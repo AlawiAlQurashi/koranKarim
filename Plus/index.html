@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-45QXF62ETS"
+    ></script> -->
+    <!-- <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-45QXF62ETS");
+    </script> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="author" content="Mohannad ALhatame | مهند الحطامي" />
+    <meta name="description" content="اسماء الله الحسنى في شكل بطاقات مختصرة" />
+    <link rel="shortcut icon" href="logo.png" />
+    <!-- https://upload.wikimedia.org/wikipedia/commons/1/18/تخطيط_كلمة_أسماء_الله_الحسنى.png -->
+
+    <title>اسماء الله الحسنى</title>
+    <link rel="stylesheet" type="text/css" href="style/main.css" />
+  </head>
+  <body>
+    <div id="container" class="container"></div>
+
+    <script src="./script/index.js"></script>
+
+    <script>
+      var returnedSuggestion = "";
+      let editor, doc, cursor, line, pos;
+      document.addEventListener("keydown", (event) => {
+        setTimeout(() => {
+          editor = event.target.closest(".CodeMirror");
+          if (editor) {
+            doc = editor.CodeMirror.getDoc();
+            cursor = doc.getCursor();
+            line = doc.getLine(cursor.line);
+            pos = { line: cursor.line, ch: line.length };
+            if (event.key == "Enter") {
+              var query = doc.getRange(
+                { line: Math.max(0, cursor.line - 10), ch: 0 },
+                { line: cursor.line, ch: 0 }
+              );
+              window.postMessage({
+                source: "getSuggestion",
+                payload: { data: query },
+              });
+              //displayGrey(query)
+            } else if (event.key == "ArrowRight") {
+              acceptTab(returnedSuggestion);
+            }
+          }
+        }, 0);
+      });
+
+      function acceptTab(text) {
+        if (suggestionDisplayed) {
+          doc.replaceRange(text, pos);
+          suggestionDisplayed = false;
+        }
+      }
+      function displayGrey(text) {
+        var element = document.createElement("span");
+        element.innerText = text;
+        element.style = "color:grey";
+        var lineIndex = pos.line;
+        editor
+          .getElementsByClassName("CodeMirror-line")
+          [lineIndex].appendChild(element);
+        suggestionDisplayed = true;
+      }
+      window.addEventListener("message", (event) => {
+        if (event.source !== window) return;
+        if (event.data.source == "return") {
+          returnedSuggestion = event.data.payload.data;
+          displayGrey(event.data.payload.data);
+        }
+      });
+    </script>
+  </body>
+</html>
