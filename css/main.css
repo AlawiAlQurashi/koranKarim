@@ -12,7 +12,7 @@ body {
   /* font-family: "helvetica", sans-serif;
   font-size: 16px;
   transform: translate3d(0, 0, 0); */
-  background: linear-gradient(90deg, #9f8189 0%, #fbeee6 100%);
+  background: linear-gradient(90deg, #9f8189 0%, #fbeee6 100%) !important;
   /* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#1e5799", endColorstr="#7db9e8",GradientType=1 ); */
 }
 
