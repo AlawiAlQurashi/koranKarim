@@ -34,7 +34,7 @@ h1 {
   background: url("../images/loding.gif") no-repeat center center
     rgb(255, 255, 255);
   opacity: 95%;
-  background-size: 90%;
+  background-size: 60%;
 }
 
 /* header */
@@ -224,7 +224,8 @@ body {
 
 .table a {
   font-size: 14px;
-  color: rgb(151, 151, 151);
+  /* color: rgb(151, 151, 151); */
+  color: #d60929;
   font-weight: 600;
 }
 
