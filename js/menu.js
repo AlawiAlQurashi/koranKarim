@@ -1,13 +1,32 @@
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
+let appFlag = true;
 
+if (!appFlag) {
+  document.getElementById("load").style.visibility = "hidden";
+} else {
+  document.onreadystatechange = function () {
+    let state = document.readyState;
+    if (state == "complete") {
+      setTimeout(function () {
+        document.getElementById("interactive");
+        document.getElementById("load").style.visibility = "hidden";
+      }, 600);
+    }
+  };
+}
+
+var tooltipTriggerList = [].slice.call(
+  document.querySelectorAll('[data-bs-toggle="tooltip"]')
+);
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl);
+});
 
 var mybutton = document.getElementById("myBtn");
 
 // When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function () { scrollFunction() };
+window.onscroll = function () {
+  scrollFunction();
+};
 
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -23,14 +42,4 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
-// load 
-
-document.onreadystatechange = function () {
-  var state = document.readyState
-  if (state == 'complete') {
-    setTimeout(function () {
-      document.getElementById('interactive');
-      document.getElementById('load').style.visibility = "hidden";
-    }, 1000);
-  }
-}
+// load
