@@ -4,16 +4,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0; */
-  direction: rtl;
-}
-
-body {
-  /* background-color: #eeeeee; */
-  /* font-family: "helvetica", sans-serif;
-  font-size: 16px;
-  transform: translate3d(0, 0, 0); */
-  background: linear-gradient(90deg, #9f8189 0%, #fbeee6 100%) !important;
-  /* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#1e5799", endColorstr="#7db9e8",GradientType=1 ); */
+  /* direction: rtl; */
 }
 
 .container {
