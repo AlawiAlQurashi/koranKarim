@@ -118,7 +118,7 @@ body {
   border-radius: 5px;
   padding: 20px;
   text-align: center;
-  overflow: hidden;
+  overflow: auto;
 }
 .card .back-facing p {
   font-size: 14px;
